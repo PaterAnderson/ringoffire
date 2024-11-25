@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { GameInfoComponent } from './game-info/game-info.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { GameInfoComponent } from './game-info/game-info.component';
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    MatCardModule,
     BrowserAnimationsModule
   ],
   providers: [],
