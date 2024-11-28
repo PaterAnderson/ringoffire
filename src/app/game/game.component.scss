@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     max-width: 100%;
-    background-image: url(./../../assets/img/background.png);
+    background-image: url(/assets/img/background.png);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +53,7 @@
 .player-position {
     position: absolute;
     right: 0;
+    z-index: 1;
 }
 
 .btn-add {
