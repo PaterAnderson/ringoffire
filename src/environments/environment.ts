@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  firebase: {  
+  firebase: {
+    apiKey: "AIzaSyCe3tbGPs59vikfPhfZ6lSzCVa--cDC1dI",
+    authDomain: "ring-of-fire-8fb4e.firebaseapp.com",
+    projectId: "ring-of-fire-8fb4e",
+    storageBucket: "ring-of-fire-8fb4e.firebasestorage.app",
+    messagingSenderId: "303740004733",
+    appId: "1:303740004733:web:3f451b27d251948da1c414"
   }
 };
 
