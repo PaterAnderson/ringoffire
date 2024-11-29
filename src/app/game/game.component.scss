@@ -8,9 +8,10 @@
     align-items: center;
 }
 
-.card-stack{
+.card-stack {
     position: relative;
-    img{
+
+    img {
         position: absolute;
         width: 120px;
 
@@ -20,6 +21,7 @@
 .top-card {
     cursor: pointer;
     transition: all 125ms ease-in-out;
+
     &:hover {
         transform: scale(1.1) translateY(-10px);
     }
@@ -28,23 +30,27 @@
 .pick-card {
     animation: pick-card-animation 1s ease-in-out;
     transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
+
     @media (max-width: 720px) {
         animation: mobile-card-animation 1s ease-in-out;
         transform: scale(1.3) translateX(100px) translateY(-190px) rotate(-10deg);
     }
-    
+
 }
 
 @keyframes pick-card-animation {
     0% {
         transform: scale(1);
     }
+
     40% {
         transform: scale(1.7);
     }
+
     60% {
         transform: scale(1.7);
     }
+
     100% {
         transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
     }
@@ -54,20 +60,24 @@
     0% {
         transform: scale(1);
     }
+
     40% {
         transform: scale(1.7);
     }
+
     60% {
         transform: scale(1.7);
     }
+
     100% {
         transform: scale(1.3) translateX(100px) translateY(-190px) rotate(-10deg);
     }
 }
 
-.played-card{
+.played-card {
     right: 25px;
     transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
+
     @media (max-width: 720px) {
         transform: scale(1.3) translateX(100px) translateY(-190px) rotate(-10deg);
     }
@@ -107,13 +117,18 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
-    
+
     app-player-mobile {
         margin-left: 8px;
     }
+
+    @media (hover: hover) and (pointer: fine) {
+        display: none;
+    }
 }
 
-app-player, app-player-mobile {
+app-player,
+app-player-mobile {
     cursor: pointer;
 
     &:hover {
