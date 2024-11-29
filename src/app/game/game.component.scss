@@ -93,6 +93,9 @@
     position: absolute;
     right: 32px;
     bottom: 32px;
+    @media (max-width: 720px) {
+        bottom: 100px;
+    }
 
 }
 
@@ -133,5 +136,28 @@ app-player-mobile {
 
     &:hover {
         filter: brightness(1.15);
+    }
+}
+
+.preloadImage {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    z-index: -99999;
+}
+
+.game-over {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    img{
+        width: 500px;
+    }
+    img:nth-child(2) {
+        cursor: pointer;;
+        &:hover {
+            filter: brightness(1.15);
+        }
     }
 }

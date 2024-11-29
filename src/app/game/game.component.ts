@@ -14,12 +14,13 @@ import { EditPlayerComponent } from '../edit-player/edit-player.component';
 export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
+  gameOver: boolean = false;
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.newGame();
+    this.initializeGame();
     this.route.params.subscribe((params) => {
       this.gameId = params.id;
 
@@ -39,15 +40,22 @@ export class GameComponent implements OnInit {
           this.game.currentCard = game.currentCard;
         });
     });
-
   }
 
-  newGame() {
+  initializeGame() {
     this.game = new Game();
   }
 
+  restart() {
+    this.initializeGame();
+    this.gameOver = false; 
+    this.saveGame();
+  }
+
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    } else if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
