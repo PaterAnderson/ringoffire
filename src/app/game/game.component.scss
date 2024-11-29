@@ -155,6 +155,12 @@ app-player-mobile {
 
     img {
         width: 500px;
+        @media (max-width: 490px) {
+            width: 400px;
+        }
+        @media (max-width: 380px) {
+            width: 330px;
+        }
     }
 
     img:nth-child(2) {
@@ -185,5 +191,16 @@ app-player-mobile {
 
     h2 {
         margin-top: 10px;
+        @media (max-width: 400px) {
+           font-size: 13px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        width: 300px;
+    }
+
+    @media (max-width: 400px) {
+        width: 200px;
     }
 }
