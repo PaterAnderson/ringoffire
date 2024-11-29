@@ -15,29 +15,29 @@ export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, 
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
-    this.route.params.subscribe((params) =>{
+    this.route.params.subscribe((params) => {
       this.gameId = params.id;
 
       this
-      .firestore
-      .collection('games')
-      .doc(this.gameId)
-      .valueChanges()
-      .subscribe((game: any) => {
-        console.log('game update', game);
-        this.game.currentPlayer = game.currentPlayer;
-        this.game.playedCards = game.playedCards;
-        this.game.players = game.players;
-        this.game.player_images = game.player_images;
-        this.game.stack = game.stack;
-        this.game.pickCardAnimation = game.pickCardAnimation;
-        this.game.currentCard = game.currentCard;
-      });
+        .firestore
+        .collection('games')
+        .doc(this.gameId)
+        .valueChanges()
+        .subscribe((game: any) => {
+          console.log('game update', game);
+          this.game.currentPlayer = game.currentPlayer;
+          this.game.playedCards = game.playedCards;
+          this.game.players = game.players;
+          this.game.player_images = game.player_images;
+          this.game.stack = game.stack;
+          this.game.pickCardAnimation = game.pickCardAnimation;
+          this.game.currentCard = game.currentCard;
+        });
     });
 
   }
@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       this.saveGame();
-      
+
       setTimeout(() => {
         this.game.playedCards.push(this.game.currentCard);
         this.game.pickCardAnimation = false;
@@ -74,21 +74,26 @@ export class GameComponent implements OnInit {
     });
   }
 
-  saveGame(){
+  saveGame() {
     this
-    .firestore
-    .collection('games')
-    .doc(this.gameId)
-    .update(this.game.toJson());
+      .firestore
+      .collection('games')
+      .doc(this.gameId)
+      .update(this.game.toJson());
   }
 
-  editPlayer(playerId: number){
+  editPlayer(playerId: number) {
     const dialogRef = this.dialog.open(EditPlayerComponent);
     dialogRef.afterClosed().subscribe((change: string) => {
-      this.game.player_images[playerId] = change;
-      this.saveGame();
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.players.splice(playerId, 1);
+          this.game.player_images.splice(playerId, 1);
+        } else {
+          this.game.player_images[playerId] = change;
+        }
+        this.saveGame();
+      }
     });
-
-
   }
 }
