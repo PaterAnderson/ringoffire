@@ -16,6 +16,7 @@ import { GameInfoComponent } from './game-info/game-info.component';
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { PlayerMobileComponent } from './player-mobile/player-mobile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { environment } from 'src/environments/environment';
     GameComponent,
     PlayerComponent,
     DialogAddPlayerComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    PlayerMobileComponent
   ],
   imports: [
     BrowserModule,
