@@ -6,8 +6,11 @@
     [image]="game.player_images[i]"  [name]="player" class="hide-desktop"></app-player-mobile>
 </div>
 
-<div *ngIf="!gameOver" class="field">
+<div *ngIf="!minimumPlayers" class="warning">
+    <h2>Please add at least two Players!</h2>
+</div>
 
+<div *ngIf="!gameOver" class="field">
     <div class="card-stack">
         <img [ngStyle]="{'right.px': i * 5}" *ngFor="let c of [0,1,2,3]; let i = index;"
             src="/assets/img/cards/card_cover.png">

@@ -93,6 +93,7 @@
     position: absolute;
     right: 32px;
     bottom: 32px;
+
     @media (max-width: 720px) {
         bottom: 100px;
     }
@@ -151,13 +152,38 @@ app-player-mobile {
     flex-direction: column;
     align-items: center;
     margin-top: 200px;
-    img{
+
+    img {
         width: 500px;
     }
+
     img:nth-child(2) {
-        cursor: pointer;;
+        cursor: pointer;
+        ;
+
         &:hover {
             filter: brightness(1.15);
         }
+    }
+}
+
+.warning {
+    display: flex;
+    background: white;
+    width: 400px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.4);
+    perspective: 1000px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    z-index: 999;
+    transform: translate(-50%, -50%);
+
+    h2 {
+        margin-top: 10px;
     }
 }

@@ -15,6 +15,7 @@ export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
   gameOver: boolean = false;
+  minimumPlayers: boolean = false;
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore,
     public dialog: MatDialog) { }
@@ -38,12 +39,17 @@ export class GameComponent implements OnInit {
           this.game.stack = game.stack;
           this.game.pickCardAnimation = game.pickCardAnimation;
           this.game.currentCard = game.currentCard;
+          this.checkMinimumPlayers();
         });
     });
   }
 
   initializeGame() {
     this.game = new Game();
+  }
+
+  checkMinimumPlayers() {
+    this.minimumPlayers = this.game.players.length >= 2;
   }
 
   restart() {
@@ -53,6 +59,9 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
+    if (!this.minimumPlayers) {
+      return; // Funktion beenden, wenn nicht genügend Spieler vorhanden sind
+  }
     if (this.game.stack.length == 0) {
       this.gameOver = true;
     } else if (!this.game.pickCardAnimation) {
@@ -78,6 +87,7 @@ export class GameComponent implements OnInit {
         this.game.players.push(name);
         this.game.player_images.push('1.webp');
         this.saveGame();
+        this.checkMinimumPlayers();
       }
     });
   }
@@ -101,6 +111,9 @@ export class GameComponent implements OnInit {
           this.game.player_images[playerId] = change;
         }
         this.saveGame();
+        
+        // Überprüfen Sie die minimale Anzahl von Spielern nach dem Bearbeiten
+        this.checkMinimumPlayers();
       }
     });
   }
